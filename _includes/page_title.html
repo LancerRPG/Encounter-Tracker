@@ -1,0 +1,10 @@
+<section
+	id="title">
+	<div class="container mt-2">
+		<h1 class="display-1 text-center">{{ page.title | default:site.title }}</h1>
+
+		{%- if page.title != null %}
+		<p>{{ site.title }}</p>
+		{%- endif %}
+	</div>
+</section>
