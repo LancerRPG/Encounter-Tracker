@@ -3,7 +3,7 @@
 	<h2 id="Control">Control</h2>
 	<div class="container mt-3">
 		<div class="row align-items-center">
-			<div class="col col-12">
+			<div class="col col-6">
 				<button class="btn btn-secondary"
 					type="button"
 					data-bs-toggle="modal"
@@ -12,6 +12,17 @@
 				<button class="btn btn-secondary"
 					type="button"
 					onclick="Array.from(document.getElementsByClassName('EncounterActivations')).forEach((item,i)=>{item.value = item.max;})">Reset Activations</button>
+			</div>
+			<div class="col col-6 text-end">
+				<button class="btn btn-outline-secondary"
+					type="button"
+					data-bs-toggle="modal"
+					data-bs-target="#ExportModal"
+					onclick="GenerateExportText()">Export</button>
+				<button class="btn btn-outline-secondary"
+					type="button"
+					data-bs-toggle="modal"
+					data-bs-target="#ImportModal">Import</button>
 			</div>
 		</div>
 	</div>
@@ -32,7 +43,7 @@
 			<div class="col col-2"><b>Activations</b></div>
 		</div>
 		<div class="row gy-2 align-items-center text-center"
-			id="ActivationsRemaining">
+			id="EncounterContent">
 		</div>
 	</div>
 </div>
@@ -62,7 +73,7 @@
 					<div class="col col-6">
 						<input class="form-control"
 							id="CharacterAddEditModal_CharacterName"
-							name="CharacterName"
+							name="Name"
 							onchange="this.value = this.value.trim()"
 							required>
 					</div>
@@ -166,6 +177,78 @@
 				<button class="btn btn-primary"
 					type="submit"
 					id="CharacterAddEditModal_SaveButton">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+
+
+
+{% comment %} Export {% endcomment -%}
+<form id="ExportModal_Form">
+<div class="modal fade"
+	id="ExportModal"
+	tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5">Export</h1>
+				<button class="btn-close"
+					type="button"
+					data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row gy-2 align-items-center">
+					<div class="col col-12">
+						<textarea class="form-control"
+							name="ExportTextArea"
+							readonly></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary"
+					type="button"
+					data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+
+
+
+{% comment %} Import {% endcomment -%}
+<form id="ImportModal_Form">
+<div class="modal fade"
+	id="ImportModal"
+	tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5">Import</h1>
+				<button class="btn-close"
+					type="button"
+					data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row gy-2 align-items-center">
+					<div class="col col-12">
+						<textarea class="form-control"
+							name="ImportTextArea"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary"
+					type="button"
+					data-bs-dismiss="modal">Close</button>
+				<button class="btn btn-danger"
+					type="button"
+					onclick="ImportData()">Import</button>
 			</div>
 		</div>
 	</div>
