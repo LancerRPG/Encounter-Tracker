@@ -15,177 +15,277 @@ function CharacterAddEditModal_Save(characterId) {
 		var id = crypto.randomUUID();
 
 		document.getElementById("EncounterContent").insertAdjacentHTML("beforeend"
-			,'<form class="Character"'
-				+ 'id="' + id + '">'
-			+ '<div class="row mt-2 gy-2 align-items-center text-center">'
-				+ '<div class="col col-2 text-start">'
-					+ '<input class="form-control-plaintext"'
-						+ ' type="text"'
-						+ ' name="Name"'
-						+ ' value="' + form.Name.value + '"'
-						+ ' readonly>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HPStructureDecrease(\'' + id + '\')">–</button>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="HP"'
-							+ ' value="' + form.HPMax.value + '" min="0" max="' + form.HPMax.value + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="HPMax"'
-							+ ' value="' + form.HPMax.value + '"'
-							+ ' readonly>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Structure"'
-							+ ' value="' + form.StructureMax.value + '" min="0" max="' + form.StructureMax.value + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="StructureMax"'
-							+ ' value="' + form.StructureMax.value + '"'
-							+ ' readonly>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HPStructureIncrease(\'' + id + '\')">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HeatStressDecrease(\'' + id + '\')">–</button>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Heat"'
-							+ ' value="0" min="0" max="' + form.HeatMax.value + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="HeatMax"'
-							+ ' value="' + form.HeatMax.value + '"'
-							+ ' readonly>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Stress"'
-							+ ' value="' + form.StressMax.value + '" min="0" max="' + form.StressMax.value + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="StressMax"'
-							+ ' value="' + form.StressMax.value + '"'
-							+ ' readonly>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HeatStressIncrease(\'' + id + '\')">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Burn.value = 0">Zero</button>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Burn.stepDown(1)">–</button>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Burn"'
-							+ ' value="0" min="0">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Burn.stepUp(1)">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Activations.stepDown(1)">–</button>'
-						+ '<input class="form-control text-center EncounterActivations"'
-							+ ' type="number"'
-							+ ' name="Activations"'
-							+ ' value="' + form.Activations.value + '" min="0" max="' + form.Activations.value + '">'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="ActivationsMax"'
-							+ ' value="' + form.Activations.value + '"'
-							+ ' readonly>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Activations.stepUp(1)">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="w-100"></div>'
-				+ '<div class="col col-12">'
-					+ '<div class="btn-group">'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ExposedCheck"'
-							+ ' name="ExposedCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ExposedCheck">Exposed</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_HiddenCheck"'
-							+ ' name="HiddenCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_HiddenCheck">Hidden</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ImmobilisedCheck"'
-							+ ' name="ImmobilisedCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ImmobilisedCheck">Immobilised</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ImpairedCheck"'
-							+ ' name="ImpairedCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ImpairedCheck">Impaired</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_InvisibleCheck"'
-							+ ' name="InvisibleCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_InvisibleCheck">Invisible</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_JammedCheck"'
-							+ ' name="JammedCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_JammedCheck">Jammed</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_LockOnCheck"'
-							+ ' name="LockOnCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_LockOnCheck">Lock On</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ShreddedCheck"'
-							+ ' name="ShreddedCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ShreddedCheck">Shredded</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_SlowedCheck"'
-							+ ' name="SlowedCheck">'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_SlowedCheck">Slowed</label>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="w-100"></div>'
-			+ '</div>'
-			+ '</form>');
+			,GenerateEncounterContentText(
+				id
+				,form.Name.value
+				,form.HPMax.value
+				,form.HPMax.value
+				,form.StructureMax.value
+				,form.StructureMax.value
+				,0
+				,form.HeatMax.value
+				,form.StressMax.value
+				,form.StressMax.value
+				,0
+				,form.ActivationsMax.value
+				,form.ActivationsMax.value
+				,false
+				,false
+				,false
+				,false
+				,false
+				,false
+				,false
+				,false
+				,false
+			)
+		);
 
 		bootstrap.Modal.getInstance(document.getElementById("CharacterAddEditModal")).hide();
 	}
+}
+
+
+
+
+function CharacterDeleteModal_Delete(id) {
+	document.getElementById(id).remove();
+
+	bootstrap.Modal.getInstance(document.getElementById("CharacterDeleteModal")).hide();
+}
+
+
+
+
+function CharacterDeleteModal_Open(id) {
+	var form = document.getElementById("CharacterDeleteModal_Form");
+
+	form.Name.value = document.getElementById(id).Name.value;
+	form.setAttribute("action","javascript:CharacterDeleteModal_Delete('" + id + "')");
+}
+
+
+
+
+function GenerateEncounterContentText(
+	id
+	,name
+	,hp
+	,hpMax
+	,structure
+	,structureMax
+	,heat
+	,heatMax
+	,stress
+	,stressMax
+	,burn
+	,activations
+	,activationsMax
+	,exposedCheck
+	,hiddenCheck
+	,immobilisedCheck
+	,impairedCheck
+	,invisibleCheck
+	,jammedCheck
+	,lockOnCheck
+	,shreddedCheck
+	,slowedCheck
+) {
+	var html = '<form class="Character"'
+			+ 'id="' + id + '">'
+		+ '<div class="row mt-2 gy-2 align-items-center text-center">'
+			+ '<div class="col col-2 text-start">'
+				+ '<input class="form-control-plaintext"'
+					+ ' type="text"'
+					+ ' name="Name"'
+					+ ' value="' + name + '"'
+					+ ' readonly>'
+			+ '</div>'
+			+ '<div class="col col-2">'
+				+ '<div class="input-group">'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="HPStructureDecrease(\'' + id + '\')">–</button>'
+					+ '<input class="form-control text-center"'
+						+ ' type="number"'
+						+ ' name="HP"'
+						+ ' value="' + hp + '" min="0" max="' + hpMax + '"'
+						+ ' readonly>'
+					+ '<input class="d-none"'
+						+ ' type="number"'
+						+ ' name="HPMax"'
+						+ ' value="' + hpMax + '"'
+						+ ' readonly>'
+					+ '<input class="form-control text-center"'
+						+ ' type="number"'
+						+ ' name="Structure"'
+						+ ' value="' + structure + '" min="0" max="' + structureMax + '"'
+						+ ' readonly>'
+					+ '<input class="d-none"'
+						+ ' type="number"'
+						+ ' name="StructureMax"'
+						+ ' value="' + structureMax + '"'
+						+ ' readonly>'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="HPStructureIncrease(\'' + id + '\')">+</button>'
+				+ '</div>'
+			+ '</div>'
+			+ '<div class="col col-2">'
+				+ '<div class="input-group">'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="HeatStressDecrease(\'' + id + '\')">–</button>'
+					+ '<input class="form-control text-center"'
+						+ ' type="number"'
+						+ ' name="Heat"'
+						+ ' value="' + heat + '" min="0" max="' + heatMax + '"'
+						+ ' readonly>'
+					+ '<input class="d-none"'
+						+ ' type="number"'
+						+ ' name="HeatMax"'
+						+ ' value="' + heatMax + '"'
+						+ ' readonly>'
+					+ '<input class="form-control text-center"'
+						+ ' type="number"'
+						+ ' name="Stress"'
+						+ ' value="' + stress + '" min="0" max="' + stressMax + '"'
+						+ ' readonly>'
+					+ '<input class="d-none"'
+						+ ' type="number"'
+						+ ' name="StressMax"'
+						+ ' value="' + stressMax + '"'
+						+ ' readonly>'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="HeatStressIncrease(\'' + id + '\')">+</button>'
+				+ '</div>'
+			+ '</div>'
+			+ '<div class="col col-2">'
+				+ '<div class="input-group">'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="this.form.Burn.value = 0">Zero</button>'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="this.form.Burn.stepDown(1)">–</button>'
+					+ '<input class="form-control text-center"'
+						+ ' type="number"'
+						+ ' name="Burn"'
+						+ ' value="' + burn + '" min="0">'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="this.form.Burn.stepUp(1)">+</button>'
+				+ '</div>'
+			+ '</div>'
+			+ '<div class="col col-2">'
+				+ '<div class="input-group">'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="this.form.Activations.stepDown(1)">–</button>'
+					+ '<input class="form-control text-center EncounterActivations"'
+						+ ' type="number"'
+						+ ' name="Activations"'
+						+ ' value="' + activations + '" min="0" max="' + activationsMax + '">'
+					+ '<input class="d-none"'
+						+ ' type="number"'
+						+ ' name="ActivationsMax"'
+						+ ' value="' + activationsMax + '"'
+						+ ' readonly>'
+					+ '<button class="btn btn-outline-secondary"'
+						+ ' type="button"'
+						+ ' onclick="this.form.Activations.stepUp(1)">+</button>'
+				+ '</div>'
+			+ '</div>'
+			+ '<div class="col col-2">'
+				+ '<button class="btn btn-danger"'
+					+ ' type="button"'
+					+ ' data-bs-toggle="modal"'
+					+ ' data-bs-target="#CharacterDeleteModal"'
+					+ ' onclick="CharacterDeleteModal_Open(\'' + id + '\')">Delete</button>'
+			+ '</div>'
+			+ '<div class="w-100"></div>'
+			+ '<div class="col col-12">'
+				+ '<div class="btn-group">'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_ExposedCheck"'
+						+ ' name="ExposedCheck"'
+						+ (exposedCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_ExposedCheck">Exposed</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_HiddenCheck"'
+						+ ' name="HiddenCheck"'
+						+ (hiddenCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_HiddenCheck">Hidden</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_ImmobilisedCheck"'
+						+ ' name="ImmobilisedCheck"'
+						+ (immobilisedCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_ImmobilisedCheck">Immobilised</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_ImpairedCheck"'
+						+ ' name="ImpairedCheck"'
+						+ (impairedCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_ImpairedCheck">Impaired</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_InvisibleCheck"'
+						+ ' name="InvisibleCheck"'
+						+ (invisibleCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_InvisibleCheck">Invisible</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_JammedCheck"'
+						+ ' name="JammedCheck"'
+						+ (jammedCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_JammedCheck">Jammed</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_LockOnCheck"'
+						+ ' name="LockOnCheck"'
+						+ (lockOnCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_LockOnCheck">Lock On</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_ShreddedCheck"'
+						+ ' name="ShreddedCheck"'
+						+ (shreddedCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_ShreddedCheck">Shredded</label>'
+					+ '<input class="btn-check"'
+						+ ' type="checkbox"'
+						+ ' id="' + id + '_SlowedCheck"'
+						+ ' name="SlowedCheck"'
+						+ (slowedCheck ? ' checked' : "")
+						+ '>'
+					+ '<label class="btn btn-outline-primary"'
+						+ ' for="' + id + '_SlowedCheck">Slowed</label>'
+				+ '</div>'
+			+ '</div>'
+			+ '<div class="w-100"></div>'
+		+ '</div>'
+		+ '</form>';
+
+	return html
 }
 
 
@@ -279,193 +379,30 @@ function ImportData() {
 	Object.keys(characters).forEach((id, i) => {
 		var data = JSON.parse(characters[id]);
 
-		html += '<form class="Character"'
-		 		+ 'id="' + id + '">'
-			+ '<div class="row mt-2 gy-2 align-items-center text-center">'
-				+ '<div class="col col-2 text-start">'
-					+ '<input class="form-control-plaintext"'
-						+ ' type="text"'
-						+ ' name="Name"'
-						+ ' value="' + data.Name + '"'
-						+ ' readonly>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HPStructureDecrease(\'' + id + '\')">–</button>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="HP"'
-							+ ' value="' + data.HP + '" min="0" max="' + data.HPMax + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="HPMax"'
-							+ ' value="' + data.HPMax + '"'
-							+ ' readonly>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Structure"'
-							+ ' value="' + data.Structure + '" min="0" max="' + data.StructureMax + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="StructureMax"'
-							+ ' value="' + data.StructureMax + '"'
-							+ ' readonly>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HPStructureIncrease(\'' + id + '\')">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HeatStressDecrease(\'' + id + '\')">–</button>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Heat"'
-							+ ' value="0" min="0" max="' + data.Heat + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="HeatMax"'
-							+ ' value="' + data.HeatMax + '"'
-							+ ' readonly>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Stress"'
-							+ ' value="' + data.Stress + '" min="0" max="' + data.StressMax + '"'
-							+ ' readonly>'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="StressMax"'
-							+ ' value="' + data.StressMax + '"'
-							+ ' readonly>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="HeatStressIncrease(\'' + id + '\')">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Burn.value = 0">Zero</button>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Burn.stepDown(1)">–</button>'
-						+ '<input class="form-control text-center"'
-							+ ' type="number"'
-							+ ' name="Burn"'
-							+ ' value="' + data.Burn + '" min="0">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Burn.stepUp(1)">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="col col-2">'
-					+ '<div class="input-group">'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Activations.stepDown(1)">–</button>'
-						+ '<input class="form-control text-center EncounterActivations"'
-							+ ' type="number"'
-							+ ' name="Activations"'
-							+ ' value="' + data.Activations + '" min="0" max="' + data.ActivationsMax + '">'
-						+ '<input class="d-none"'
-							+ ' type="number"'
-							+ ' name="ActivationsMax"'
-							+ ' value="' + data.ActivationsMax + '"'
-							+ ' readonly>'
-						+ '<button class="btn btn-outline-secondary"'
-							+ ' type="button"'
-							+ ' onclick="this.form.Activations.stepUp(1)">+</button>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="w-100"></div>'
-				+ '<div class="col col-12">'
-					+ '<div class="btn-group">'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ExposedCheck"'
-							+ ' name="ExposedCheck"'
-							+ (data.ExposedCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ExposedCheck">Exposed</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_HiddenCheck"'
-							+ ' name="HiddenCheck"'
-							+ (data.HiddenCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_HiddenCheck">Hidden</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ImmobilisedCheck"'
-							+ ' name="ImmobilisedCheck"'
-							+ (data.ImmobilisedCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ImmobilisedCheck">Immobilised</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ImpairedCheck"'
-							+ ' name="ImpairedCheck"'
-							+ (data.ImpairedCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ImpairedCheck">Impaired</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_InvisibleCheck"'
-							+ ' name="InvisibleCheck"'
-							+ (data.InvisibleCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_InvisibleCheck">Invisible</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_JammedCheck"'
-							+ ' name="JammedCheck"'
-							+ (data.JammedCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_JammedCheck">Jammed</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_LockOnCheck"'
-							+ ' name="LockOnCheck"'
-							+ (data.LockOnCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_LockOnCheck">Lock On</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_ShreddedCheck"'
-							+ ' name="ShreddedCheck"'
-							+ (data.ShreddedCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_ShreddedCheck">Shredded</label>'
-						+ '<input class="btn-check"'
-							+ ' type="checkbox"'
-							+ ' id="' + id + '_SlowedCheck"'
-							+ ' name="SlowedCheck"'
-							+ (data.SlowedCheck == "on" ? ' checked' : "")
-							+ '>'
-						+ '<label class="btn btn-outline-primary"'
-							+ ' for="' + id + '_SlowedCheck">Slowed</label>'
-					+ '</div>'
-				+ '</div>'
-				+ '<div class="w-100"></div>'
-			+ '</div>'
-			+ '</form>';
-
+		html += GenerateEncounterContentText(
+			id
+			,data.Name
+			,data.HP
+			,data.HPMax
+			,data.Structure
+			,data.StructureMax
+			,data.Heat
+			,data.HeatMax
+			,data.Stress
+			,data.StressMax
+			,data.Burn
+			,data.Activations
+			,data.ActivationsMax
+			,(data.ExposedCheck == "on" ? true : false)
+			,(data.HiddenCheck == "on" ? true : false)
+			,(data.ImmobilisedCheck == "on" ? true : false)
+			,(data.ImpairedCheck == "on" ? true : false)
+			,(data.InvisibleCheck == "on" ? true : false)
+			,(data.JammedCheck == "on" ? true : false)
+			,(data.LockOnCheck == "on" ? true : false)
+			,(data.ShreddedCheck == "on" ? true : false)
+			,(data.SlowedCheck == "on" ? true : false)
+		);
 	});
 
 	document.getElementById("EncounterContent").innerHTML = html;

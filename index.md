@@ -41,6 +41,7 @@
 			<div class="col col-2"><b>Heat / Stress</b></div>
 			<div class="col col-2"><b>Burn</b></div>
 			<div class="col col-2"><b>Activations</b></div>
+			<div class="col col-2"><b>Control</b></div>
 		</div>
 		<div class="row gy-2 align-items-center text-center"
 			id="EncounterContent">
@@ -156,15 +157,15 @@
 						<div class="input-group">
 							<button class="btn btn-outline-secondary"
 								type="button"
-								onclick="this.form.Activations.stepDown(1)">–</button>
+								onclick="this.form.ActivationsMax.stepDown(1)">–</button>
 							<input class="form-control text-center"
 								type="number"
-								name="Activations"
+								name="ActivationsMax"
 								value="1" min="1" max="5"
 								required>
 							<button class="btn btn-outline-secondary"
 								type="button"
-								onclick="this.form.Activations.stepUp(1)">+</button>
+								onclick="this.form.ActivationsMax.stepUp(1)">+</button>
 						</div>
 					</div>
 					<div class="w-100"></div>
@@ -177,6 +178,45 @@
 				<button class="btn btn-primary"
 					type="submit"
 					id="CharacterAddEditModal_SaveButton">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+
+
+
+{% comment %} Delete {% endcomment -%}
+<form id="CharacterDeleteModal_Form">
+<div class="modal fade"
+	id="CharacterDeleteModal"
+	tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5">Delete Character</h1>
+				<button class="btn-close"
+					type="button"
+					data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row gy-2 align-items-center">
+					<div class="col col-12">
+						Confirm deletion of: <input class="form-control-plaintext text-danger"
+							type="text"
+							name="Name"
+							value="Character Name"
+							readonly>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary"
+					type="button"
+					data-bs-dismiss="modal">Cancel</button>
+				<button class="btn btn-danger"
+					type="submit">Delete</button>
 			</div>
 		</div>
 	</div>
