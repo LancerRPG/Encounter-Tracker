@@ -1,3 +1,7 @@
+---
+onLoad: "OnDocumentLoad()"
+---
+
 {% comment %} Control {% endcomment -%}
 <div class="container mt-3">
 	<h2 id="Control">Control</h2>
@@ -22,7 +26,8 @@
 				<button class="btn btn-outline-secondary"
 					type="button"
 					data-bs-toggle="modal"
-					data-bs-target="#ImportModal">Import</button>
+					data-bs-target="#ImportModal"
+					onclick="document.getElementById('ImportModal_Form').ImportTextArea.value = ''">Import</button>
 			</div>
 		</div>
 	</div>
@@ -244,6 +249,7 @@
 					<div class="col col-12">
 						<textarea class="form-control"
 							name="ExportTextArea"
+							rows="10"
 							readonly></textarea>
 					</div>
 				</div>
@@ -278,6 +284,7 @@
 				<div class="row gy-2 align-items-center">
 					<div class="col col-12">
 						<textarea class="form-control"
+							rows="10"
 							name="ImportTextArea"></textarea>
 					</div>
 				</div>
@@ -288,7 +295,7 @@
 					data-bs-dismiss="modal">Close</button>
 				<button class="btn btn-danger"
 					type="button"
-					onclick="ImportData()">Import</button>
+					onclick="ImportModal_Import()">Import</button>
 			</div>
 		</div>
 	</div>

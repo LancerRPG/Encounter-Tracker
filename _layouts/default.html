@@ -3,7 +3,9 @@
 
 {% include header.html %}
 
-<body>
+<body
+{%- if page.onLoad != null %} onLoad="{{ page.onLoad }}"{%- endif -%}
+>
 
 {% include page_title.html %}
 <section id="content">

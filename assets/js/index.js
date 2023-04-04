@@ -41,6 +41,8 @@ function CharacterAddEditModal_Save(characterId) {
 			)
 		);
 
+		SaveToSessionStorage();
+
 		bootstrap.Modal.getInstance(document.getElementById("CharacterAddEditModal")).hide();
 	}
 }
@@ -50,6 +52,8 @@ function CharacterAddEditModal_Save(characterId) {
 
 function CharacterDeleteModal_Delete(id) {
 	document.getElementById(id).remove();
+
+	SaveToSessionStorage();
 
 	bootstrap.Modal.getInstance(document.getElementById("CharacterDeleteModal")).hide();
 }
@@ -92,7 +96,8 @@ function GenerateEncounterContentText(
 	,slowedCheck
 ) {
 	var html = '<form class="Character"'
-			+ 'id="' + id + '">'
+			+ ' id="' + id + '"'
+			+ ' onchange="SaveToSessionStorage()">'
 		+ '<div class="row mt-2 gy-2 align-items-center text-center">'
 			+ '<div class="col col-2 text-start">'
 				+ '<input class="form-control-plaintext"'
@@ -292,11 +297,7 @@ function GenerateEncounterContentText(
 
 
 function GenerateExportText() {
-	var data = {};
-	Array.from(document.getElementsByClassName("Character")).forEach((item, i) => {
-		data[item.id] = JSON.stringify(Object.fromEntries(new FormData(item)));
-	});
-	document.getElementById("ExportModal_Form").ExportTextArea.value = JSON.stringify(data);
+	document.getElementById("ExportModal_Form").ExportTextArea.value = JSON.stringify(sessionStorage);
 }
 
 
@@ -314,6 +315,8 @@ function HeatStressDecrease(id) {
 	} else {
 		form.Heat.stepDown(1);
 	}
+
+	SaveToSessionStorage();
 }
 
 
@@ -328,6 +331,8 @@ function HeatStressIncrease(id) {
 	} else if (form.Stress.value != 0) {
 		form.Heat.stepUp(1);
 	}
+
+	SaveToSessionStorage();
 }
 
 
@@ -347,6 +352,8 @@ function HPStructureDecrease(id) {
 			form.Structure.stepDown(1);
 		}
 	}
+
+	SaveToSessionStorage();
 }
 
 
@@ -367,45 +374,75 @@ function HPStructureIncrease(id) {
 			form.Structure.stepUp(1);
 		}
 	}
+
+	SaveToSessionStorage();
 }
 
 
 
 
-function ImportData() {
-	var characters = JSON.parse(document.getElementById("ImportModal_Form").ImportTextArea.value);
+function ImportData(characters) {
 	var html = "";
 
 	Object.keys(characters).forEach((id, i) => {
-		var data = JSON.parse(characters[id]);
+		var character = JSON.parse(characters[id]);
+
+		sessionStorage.setItem(id,characters[id]);
 
 		html += GenerateEncounterContentText(
 			id
-			,data.Name
-			,data.HP
-			,data.HPMax
-			,data.Structure
-			,data.StructureMax
-			,data.Heat
-			,data.HeatMax
-			,data.Stress
-			,data.StressMax
-			,data.Burn
-			,data.Activations
-			,data.ActivationsMax
-			,(data.ExposedCheck == "on" ? true : false)
-			,(data.HiddenCheck == "on" ? true : false)
-			,(data.ImmobilisedCheck == "on" ? true : false)
-			,(data.ImpairedCheck == "on" ? true : false)
-			,(data.InvisibleCheck == "on" ? true : false)
-			,(data.JammedCheck == "on" ? true : false)
-			,(data.LockOnCheck == "on" ? true : false)
-			,(data.ShreddedCheck == "on" ? true : false)
-			,(data.SlowedCheck == "on" ? true : false)
+			,character.Name
+			,character.HP
+			,character.HPMax
+			,character.Structure
+			,character.StructureMax
+			,character.Heat
+			,character.HeatMax
+			,character.Stress
+			,character.StressMax
+			,character.Burn
+			,character.Activations
+			,character.ActivationsMax
+			,(character.ExposedCheck == "on" ? true : false)
+			,(character.HiddenCheck == "on" ? true : false)
+			,(character.ImmobilisedCheck == "on" ? true : false)
+			,(character.ImpairedCheck == "on" ? true : false)
+			,(character.InvisibleCheck == "on" ? true : false)
+			,(character.JammedCheck == "on" ? true : false)
+			,(character.LockOnCheck == "on" ? true : false)
+			,(character.ShreddedCheck == "on" ? true : false)
+			,(character.SlowedCheck == "on" ? true : false)
 		);
 	});
 
 	document.getElementById("EncounterContent").innerHTML = html;
+}
+
+
+
+
+function ImportModal_Import() {
+	sessionStorage.clear();
+	ImportData(JSON.parse(document.getElementById("ImportModal_Form").ImportTextArea.value));
 
 	bootstrap.Modal.getInstance(document.getElementById("ImportModal")).hide();
+}
+
+
+
+
+function OnDocumentLoad() {
+	if (sessionStorage.length != 0) {
+		ImportData(sessionStorage);
+	}
+}
+
+
+
+
+function SaveToSessionStorage() {
+	sessionStorage.clear()
+	Array.from(document.getElementsByClassName("Character")).forEach((item, i) => {
+		sessionStorage.setItem(item.id,JSON.stringify(Object.fromEntries(new FormData(item))));
+	});
 }
