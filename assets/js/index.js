@@ -108,6 +108,19 @@ function CharacterDeleteModal_Open(id) {
 
 
 
+function ExportModal_Copy() {
+	var form = document.getElementById("ExportModal_Form");
+
+	navigator.clipboard.writeText(form.ExportTextArea.value).then(() => {
+		document.getElementById('ExportModal_CopiedMessage').innerHTML = 'Copied!';
+
+		setTimeout(function() {document.getElementById('ExportModal_CopiedMessage').innerHTML = ""},3000);
+	});
+}
+
+
+
+
 function GenerateEncounterContentText(
 	id
 	,name

@@ -193,12 +193,12 @@ onLoad: "OnDocumentLoad()"
 				</fieldset>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary"
-					type="button"
-					data-bs-dismiss="modal">Close</button>
 				<button class="btn btn-primary"
 					type="submit"
 					id="CharacterAddEditModal_SaveButton">Save</button>
+				<button class="btn btn-secondary"
+					type="button"
+					data-bs-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -233,11 +233,11 @@ onLoad: "OnDocumentLoad()"
 				</div>
 			</div>
 			<div class="modal-footer">
+				<button class="btn btn-danger"
+					type="submit">Delete</button>
 				<button class="btn btn-secondary"
 					type="button"
 					data-bs-dismiss="modal">Cancel</button>
-				<button class="btn btn-danger"
-					type="submit">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -271,6 +271,11 @@ onLoad: "OnDocumentLoad()"
 				</div>
 			</div>
 			<div class="modal-footer">
+				<div class="text-success"
+					id="ExportModal_CopiedMessage"></div>
+				<button class="btn btn-primary"
+					type="button"
+					onclick="ExportModal_Copy()">Copy to Clipboard</button>
 				<button class="btn btn-secondary"
 					type="button"
 					data-bs-dismiss="modal">Close</button>
@@ -306,12 +311,12 @@ onLoad: "OnDocumentLoad()"
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary"
-					type="button"
-					data-bs-dismiss="modal">Close</button>
 				<button class="btn btn-danger"
 					type="button"
 					onclick="ImportEncounterModal_Import()">Import</button>
+				<button class="btn btn-secondary"
+					type="button"
+					data-bs-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
