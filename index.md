@@ -84,6 +84,22 @@ onLoad: "OnDocumentLoad()"
 							required>
 					</div>
 					<div class="w-100"></div>
+					<hr>
+					{% comment %} File Input {% endcomment -%}
+					<div class="col col-4">File</div>
+					<div class="col col-8">
+						<input class="form-control"
+							type="file"
+							name="File"
+							oninput="this.form.ManualCharacterFieldset.disabled = true">
+					</div>
+					<div class="w-100"></div>
+					{% comment %} OR {% endcomment -%}
+					<div class="col col-12 text-center my-3"><b>OR</b></div>
+					<div class="w-100"></div>
+				</div>
+				<fieldset class="row gy-2"
+					name="ManualCharacterFieldset">
 					{% comment %} Max HP {% endcomment -%}
 					<div class="col col-4">HP</div>
 					<div class="col col-6">
@@ -174,7 +190,7 @@ onLoad: "OnDocumentLoad()"
 						</div>
 					</div>
 					<div class="w-100"></div>
-				</div>
+				</fieldset>
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-secondary"

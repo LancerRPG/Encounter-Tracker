@@ -1,7 +1,10 @@
 function CharacterAddEditModal_Open(characterId) {
 	if (characterId == null) {
+		var form = document.getElementById("CharacterAddEditModal_Form");
+
 		document.getElementById("CharacterAddEditModal_Label").innerHTML = "Add Character";
-		document.getElementById("CharacterAddEditModal_Form").reset();
+		form.ManualCharacterFieldset.disabled = false;
+		form.reset();
 		document.getElementById("CharacterAddEditModal_SaveButton").innerHTML = "Add";
 	}
 }
@@ -15,34 +18,67 @@ function CharacterAddEditModal_Save(characterId) {
 	if (characterId == null) {
 		var id = crypto.randomUUID();
 
-		document.getElementById("EncounterContent").insertAdjacentHTML("beforeend"
-			,GenerateEncounterContentText(
-				id
-				,form.Name.value
-				,form.HPMax.value
-				,form.HPMax.value
-				,form.StructureMax.value
-				,form.StructureMax.value
-				,0
-				,form.HeatMax.value
-				,form.StressMax.value
-				,form.StressMax.value
-				,0
-				,form.ActivationsMax.value
-				,form.ActivationsMax.value
-				,false
-				,false
-				,false
-				,false
-				,false
-				,false
-				,false
-				,false
-				,false
-			)
-		);
+		if (form.File != null) {
+			new Response(form.File.files[0]).json().then(json => {
+				document.getElementById("EncounterContent").insertAdjacentHTML("beforeend"
+					,GenerateEncounterContentText(
+						id
+						,form.Name.value
+						,json.stats.hp + json.stats.bonuses.hp
+						,json.stats.hp + json.stats.bonuses.hp
+						,json.stats.structure + json.stats.bonuses.structure
+						,json.stats.structure + json.stats.bonuses.structure
+						,0
+						,json.stats.heatcap + json.stats.bonuses.heatcap
+						,json.stats.stress + json.stats.bonuses.stress
+						,json.stats.stress + json.stats.bonuses.stress
+						,0
+						,json.stats.activations + json.stats.bonuses.activations
+						,json.stats.activations + json.stats.bonuses.activations
+						,false
+						,false
+						,false
+						,false
+						,false
+						,false
+						,false
+						,false
+						,false
+					)
+				);
 
-		SaveToSessionStorage();
+				SaveToSessionStorage();
+			})
+		} else {
+			document.getElementById("EncounterContent").insertAdjacentHTML("beforeend"
+				,GenerateEncounterContentText(
+					id
+					,form.Name.value
+					,form.HPMax.value
+					,form.HPMax.value
+					,form.StructureMax.value
+					,form.StructureMax.value
+					,0
+					,form.HeatMax.value
+					,form.StressMax.value
+					,form.StressMax.value
+					,0
+					,form.ActivationsMax.value
+					,form.ActivationsMax.value
+					,false
+					,false
+					,false
+					,false
+					,false
+					,false
+					,false
+					,false
+					,false
+				)
+			);
+
+			SaveToSessionStorage();
+		}
 
 		bootstrap.Modal.getInstance(document.getElementById("CharacterAddEditModal")).hide();
 	}
