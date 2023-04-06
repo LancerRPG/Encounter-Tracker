@@ -18,7 +18,7 @@ function CharacterAddEditModal_Save(characterId) {
 	if (characterId == null) {
 		var id = crypto.randomUUID();
 
-		if (form.File != null) {
+		if (form.File.files[0] != null) {
 			new Response(form.File.files[0]).json().then(json => {
 				document.getElementById("EncounterContent").insertAdjacentHTML("beforeend"
 					,GenerateEncounterContentText(
