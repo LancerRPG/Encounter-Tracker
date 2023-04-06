@@ -26,8 +26,8 @@ onLoad: "OnDocumentLoad()"
 				<button class="btn btn-outline-secondary"
 					type="button"
 					data-bs-toggle="modal"
-					data-bs-target="#ImportModal"
-					onclick="document.getElementById('ImportModal_Form').ImportTextArea.value = ''">Import</button>
+					data-bs-target="#ImportEncounterModal"
+					onclick="document.getElementById('ImportEncounterModal_Form').ImportTextArea.value = ''">Import</button>
 			</div>
 		</div>
 	</div>
@@ -267,10 +267,10 @@ onLoad: "OnDocumentLoad()"
 
 
 
-{% comment %} Import {% endcomment -%}
-<form id="ImportModal_Form">
+{% comment %} Import Encounter {% endcomment -%}
+<form id="ImportEncounterModal_Form">
 <div class="modal fade"
-	id="ImportModal"
+	id="ImportEncounterModal"
 	tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -295,7 +295,7 @@ onLoad: "OnDocumentLoad()"
 					data-bs-dismiss="modal">Close</button>
 				<button class="btn btn-danger"
 					type="button"
-					onclick="ImportModal_Import()">Import</button>
+					onclick="ImportEncounterModal_Import()">Import</button>
 			</div>
 		</div>
 	</div>

@@ -421,11 +421,11 @@ function ImportData(characters) {
 
 
 
-function ImportModal_Import() {
+function ImportEncounterModal_Import() {
 	sessionStorage.clear();
-	ImportData(JSON.parse(document.getElementById("ImportModal_Form").ImportTextArea.value));
+	ImportData(JSON.parse(document.getElementById("ImportEncounterModal_Form").ImportTextArea.value));
 
-	bootstrap.Modal.getInstance(document.getElementById("ImportModal")).hide();
+	bootstrap.Modal.getInstance(document.getElementById("ImportEncounterModal")).hide();
 }
 
 
