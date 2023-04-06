@@ -259,7 +259,8 @@ function GenerateEncounterContentText(
 					+ ' data-bs-target="#CharacterDeleteModal"'
 					+ ' onclick="CharacterDeleteModal_Open(\'' + id + '\')">Delete</button>'
 			+ '</div>'
-			+ '<div class="w-100"></div>'
+		+ '</div>'
+		+ '<div class="row mt-2 gy-2 align-items-center text-center">'
 			+ '<div class="col col-12">'
 				+ '<div class="btn-group">'
 					+ '<input class="btn-check"'
@@ -336,7 +337,6 @@ function GenerateEncounterContentText(
 						+ ' for="' + id + '_SlowedCheck">Slowed</label>'
 				+ '</div>'
 			+ '</div>'
-			+ '<div class="w-100"></div>'
 		+ '</div>'
 		+ '</form>';
 

@@ -48,8 +48,7 @@ onLoad: "OnDocumentLoad()"
 			<div class="col col-2"><b>Activations</b></div>
 			<div class="col col-2"><b>Control</b></div>
 		</div>
-		<div class="row gy-2 align-items-center text-center"
-			id="EncounterContent">
+		<div id="EncounterContent">
 		</div>
 	</div>
 </div>
@@ -83,8 +82,9 @@ onLoad: "OnDocumentLoad()"
 							onchange="this.value = this.value.trim()"
 							required>
 					</div>
-					<div class="w-100"></div>
-					<hr>
+				</div>
+				<hr>
+				<div class="row gy-2 align-items-center">
 					{% comment %} File Input {% endcomment -%}
 					<div class="col col-4">File</div>
 					<div class="col col-8">
@@ -93,10 +93,10 @@ onLoad: "OnDocumentLoad()"
 							name="File"
 							oninput="this.form.ManualCharacterFieldset.disabled = true">
 					</div>
-					<div class="w-100"></div>
+				</div>
+				<div class="row align-items-center">
 					{% comment %} OR {% endcomment -%}
 					<div class="col col-12 text-center my-3"><b>OR</b></div>
-					<div class="w-100"></div>
 				</div>
 				<fieldset class="row gy-2"
 					name="ManualCharacterFieldset">
