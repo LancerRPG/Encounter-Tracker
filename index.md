@@ -59,7 +59,7 @@ onLoad: "OnDocumentLoad()"
 
 {% comment %} Character - Add Edit Modal {% endcomment -%}
 <form id="CharacterAddEditModal_Form"
-	onsubmit="CharacterAddEditModal_Save()">
+	action="javascript:CharacterAddEditModal_Save()">
 <div class="modal fade"
 	id="CharacterAddEditModal"
 	tabindex="-1">
