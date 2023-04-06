@@ -11,6 +11,7 @@ function CharacterAddEditModal_Open(characterId) {
 
 function CharacterAddEditModal_Save(characterId) {
 	var form = document.getElementById("CharacterAddEditModal_Form");
+
 	if (characterId == null) {
 		var id = crypto.randomUUID();
 
