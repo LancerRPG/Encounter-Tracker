@@ -76,9 +76,9 @@ onLoad: "OnDocumentLoad()"
 				<div class="row gy-2 align-items-center">
 					{% comment %} Name {% endcomment -%}
 					<div class="col col-4">Name</div>
-					<div class="col col-6">
+					<div class="col col-8">
 						<input class="form-control"
-							id="CharacterAddEditModal_CharacterName"
+							type="text"
 							name="Name"
 							onchange="this.value = this.value.trim()"
 							required>
