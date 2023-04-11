@@ -1,10 +1,11 @@
-<section
-	id="title">
-	<div class="container mt-2">
-		<h1 class="display-1 text-center">{{ page.title | default:site.title }}</h1>
-
-		{%- if page.title != null %}
-		<p>{{ site.title }}</p>
-		{%- endif %}
-	</div>
+<section id="title">
+<div class="container mt-2">
+	<h1 class="display-1 text-center">{{ site.title }}</h1>
+	<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Lancer RPG Tools</a></li>
+			<li class="breadcrumb-item active">{{ site.title }}</li>
+		</ol>
+	</nav>
+</div>
 </section>
